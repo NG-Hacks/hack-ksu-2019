@@ -2,6 +2,10 @@
 
 The purpose of this repository is to store our notes and application for the 2019 KSU Hackathon.
 
+## Requirements
+python 3.6.8
+git
+
 ## Set up the environment
 ```
 python3.6 -m venv .env
