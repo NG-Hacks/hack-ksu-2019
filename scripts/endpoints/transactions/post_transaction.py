@@ -9,8 +9,8 @@ import json
 import requests
 
 # internal
-from scripts.context.context import Context
-from scripts.utility import const
+from context.context import Context
+from utility import const
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ def post_transaction(
         a transaction on the specified account.
     '''
 
-    req_url = BASE_URL + f'/{accountID}/transactions'
+    req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
     data = {
         const.COUNTER_PARTY : counterParty,
@@ -44,9 +44,9 @@ def post_transaction(
         data[const.DATE] = date
 
     resp = requests.post(
-        url = req_url,
-        headers = HEADERS,
-        data = json.dumps(data)
+        url=req_url,
+        headers=HEADERS,
+        data=json.dumps(data)
     )
 
     res = {
