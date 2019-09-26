@@ -27,6 +27,14 @@ class Context:
         # load base url
         Context._DATA[const.BASE_URL] = CONFIG_DATA[env.BASE_URL]
 
+        # load content type
+        Context._DATA[const.CONTENT_TYPE] = CONFIG_DATA[env.CONTENT_TYPE]
+
+        Context._DATA[const.HEADERS] = {
+            const.X_API_KEY : Context._DATA[const.API_KEY],
+            const.CONTENT_TYPE : Context._DATA[const.CONTENT_TYPE]
+        }
+        
         _INITALIZED = True
 
     def data():

@@ -30,8 +30,12 @@ logging.basicConfig(
 _LOGGER = logging.getLogger(__name__)
 
 if __name__ == '__main__':
+
+    # init context
     from context.context import Context
     Context.initialize(CONFIG_FILE_PATH)
 
-    print(Context.data())
+    # init endpoints
+    from endpoints import Endpoints
+    Endpoints.initialize()
     # _LOGGER.debug('test')
