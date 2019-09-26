@@ -1,5 +1,5 @@
 {
     "HACK_KSU_BASE_URL" : "https://us-central1-incomm-hackathon-api.cloudfunctions.net/api",
-    "HACK_KSU_API_KEY" : "apikey",
+    "HACK_KSU_API_KEY" : "f9aOcoPNxfVQrxkEQS40",
     "HACK_KSU_CONTENT_TYPE" : "application/json"
 }
