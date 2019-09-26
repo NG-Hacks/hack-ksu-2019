@@ -4,3 +4,6 @@
 
 # python env
 .env
+
+# config for our application
+.config
