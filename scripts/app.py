@@ -36,12 +36,6 @@ if __name__ == '__main__':
     from context.context import Context
     Context.initialize(CONFIG_FILE_PATH)
 
-    # init endpoints
-    _LOGGER.debug('initializing endpoints')
-    from endpoints import Endpoints
-    Endpoints.initialize()
-
     from endpoints.transactions.list_transactions import list_transactions
     res = list_transactions(accountID='cRXWSTSjI6WT2EYQeshT')
-    print(res)
     
