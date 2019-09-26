@@ -6,4 +6,4 @@
 .env
 
 # config for our application
-.config
+scripts/.config
