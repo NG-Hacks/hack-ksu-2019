@@ -6,6 +6,9 @@ The purpose of this repository is to store our notes and application for the 201
 python 3.6.8
 git
 
+## Environment Files
+Do not add apikey or other sensitive data to this repo.
+
 ## Set up the environment
 ```
 python3.6 -m venv .env
