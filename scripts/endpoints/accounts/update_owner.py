@@ -1,9 +1,38 @@
-import requests
+
+# standard
+import logging
 import json
+
+# packages
+import requests
+
+# internal
 from utility import const
-def update_account_owner(base_url:str, account_id:str, owner:str, headers:dict):
-    balance_data = json.dumps({"owner": owner})
-    update_account_owner_request = requests.put(base_url+"/accounts/updateOwner/"+account_id, headers=headers, data=balance_data)
+from context.context import Context
+
+_LOGGER = logging.getLogger(__name__)
+
+BASE_URL = Context.data()[const.BASE_URL]
+HEADERS = Context.data()[const.HEADERS]
+
+def update_account_owner(
+    account_id:str, 
+    owner:str, 
+    base_url:str=BASE_URL,
+    headers:dict=HEADERS):
+    '''
+    '''
+
+    req_url = base_url + f'/accounts/updateOwner/{account_id}'
+
+    data = {
+        const.OWNER : owner
+    }
+
+    update_account_owner_request = requests.put(
+        url=req_url, 
+        headers=headers, 
+        data=json.dumps(data))
     
     if update_account_owner_request.status_code == 200:
         update_account_owner_response = {
@@ -12,12 +41,15 @@ def update_account_owner(base_url:str, account_id:str, owner:str, headers:dict):
         }
 
         return update_account_owner_response
+
     elif update_account_owner_request.status_code == 401:
-        print("Access forbidden, invalid x-api-key")
+        _LOGGER.error("Access forbidden, invalid x-api-key")
         return None
+
     elif update_account_owner_request.status_code == 404:
-        print("Unable to find account")
+        _LOGGER.error("Unable to find account")
         return None
+
     else:
-        print("Unknow error")
+        _LOGGER.error("Unknown error")
         return None
