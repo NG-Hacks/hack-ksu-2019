@@ -27,5 +27,11 @@ class Context:
         # load base url
         Context._DATA[const.BASE_URL] = CONFIG_DATA[env.BASE_URL]
 
+        _INITALIZED = True
+
     def data():
         return Context._DATA
+
+    def initialized():
+        return Context._INITIALIZED
+        
