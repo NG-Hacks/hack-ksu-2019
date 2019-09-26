@@ -36,9 +36,7 @@ if __name__ == '__main__':
     from context.context import Context
     Context.initialize(CONFIG_FILE_PATH)
 
-    # init endpoints
-    _LOGGER.debug('initializing endpoints')
-    from endpoints import Endpoints
-    Endpoints.initialize()
+    BASE_URL = Context.data()[const.BASE_URL]
+    HEADERS = Context.data()[const.HEADERS]
     
     
