@@ -36,7 +36,6 @@ if __name__ == '__main__':
     from context.context import Context
     Context.initialize(CONFIG_FILE_PATH)
 
-    BASE_URL = Context.data()[const.BASE_URL]
-    HEADERS = Context.data()[const.HEADERS]
-    
+    from endpoints.transactions.list_transactions import list_transactions
+    res = list_transactions(accountID='cRXWSTSjI6WT2EYQeshT')
     

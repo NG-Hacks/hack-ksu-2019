@@ -31,7 +31,7 @@ def post_transaction(
 
     req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
-    data = {
+    params = {
         const.COUNTER_PARTY : counterParty,
         const.TYPE : transactionType,
         const.DESC : description,
@@ -41,17 +41,24 @@ def post_transaction(
     # if a date is not specified, the api will fill
     # in the date with the current time
     if date:
-        data[const.DATE] = date
+        params[const.DATE] = date
 
     resp = requests.post(
         url=req_url,
         headers=HEADERS,
-        data=json.dumps(data)
+        params=json.dumps(params)
     )
 
-    res = {
-        const.STATUS : resp.status_code,
-        const.TEXT : resp.text
-    }
+    try:
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : resp.json()
+        }
 
+    except: 
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : None
+        }
+        
     return res
