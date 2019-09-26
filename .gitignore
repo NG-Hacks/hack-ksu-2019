@@ -4,6 +4,7 @@
 
 # python env
 .env
+__pycache__
 
 # config for our application
 scripts/.config/*
