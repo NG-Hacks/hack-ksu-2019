@@ -1,20 +1,48 @@
-import requests
-from utility import const
 
-def delete_account(base_url:str, account_id:str, headers:dict):
-    delete_account_request = requests.delete(base_url+"/accounts/"+account_id, headers=headers)
+# standard
+import logging
+
+# packages
+import requests
+
+# internal
+from utility import const
+from context.context import Context
+
+_LOGGER = logging.getLogger(__name__)
+
+BASE_URL = Context.data()[const.BASE_URL]
+HEADERS = Context.data()[const.HEADERS]
+
+def delete_account(
+    account_id:str,
+    base_url:str=BASE_URL, 
+    headers:dict=HEADERS):
+    '''
+    '''
+
+    req_url = base_url + f'/accounts/{account_id}'
+
+    delete_account_request = requests.delete(
+        url=req_url, 
+        headers=headers)
+
     if delete_account_request.status_code == 200:
-        delete_account_response  = {
+        delete_account_response = {
             const.STATUS:delete_account_response.status_code,
             const.DATA:delete_account_response.json()
         }
+
         return delete_account_response 
+
     elif delete_account_request.status_code == 401:
-        print("Access forbidden, invalid x-api-key")
+        _LOGGER.error("Access forbidden, invalid x-api-key")
         return None
+
     elif delete_account_request.status_code == 404:
-        print("Unable to find account")
+        _LOGGER.error("Unable to find account")
         return None
+
     else:
-        print("Unknow error")
+        _LOGGER.error("Unknow error")
         return None
