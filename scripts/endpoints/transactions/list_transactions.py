@@ -30,26 +30,41 @@ def list_transactions(
         a transaction on the specified account.
     '''
 
-    req_url = BASE_URL + f'/{accountID}/transactions'
+    req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
-    data = {
-        const.AFTER : after,
-        const.BEFORE : before,
-        const.TYPE : transactionType,
-        const.COUNTER_PARTY : counterParty,
-        const.PAGE_SIZE : pageSize,
-        const.PAGE_OFFSET : pageOffset
+    params = {
+        const.ID : accountID
     }
+
+    if after:
+        params[const.AFTER] = after
+    if before:
+        params[const.BEFORE] = before
+    if transactionType:
+        params[const.TYPE] = transactionType
+    if counterParty:
+        params[const.COUNTER_PARTY] = counterParty
+    if pageSize:
+        params[const.PAGE_SIZE] = pageSize
+    if pageOffset:
+        params[const.PAGE_OFFSET] = pageOffset
 
     resp = requests.get(
         url=req_url,
         headers=HEADERS,
-        data=json.dumps(data)
+        params=json.dumps(params)
     )
 
-    res = {
-        const.STATUS : resp.status_code,
-        const.TEXT : resp.text
-    }
+    try:
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : resp.json()
+        }
 
+    except: 
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : None
+        }
+        
     return res
