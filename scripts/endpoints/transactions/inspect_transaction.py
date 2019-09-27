@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 BASE_URL = Context.data()[const.BASE_URL]
 HEADERS = Context.data()[const.HEADERS]
 
-def inspect_transactions(
+def inspect_transaction(
     accountID:str,
     transactionID:str):
     '''
@@ -27,9 +27,10 @@ def inspect_transactions(
             accountID - Account identifier
             transactionID - Transaction identifier
     '''
-
+    # build request url
     req_url = BASE_URL + f'accounts/{accountID}/transactions/{transactionID}'
 
+    # make request
     resp = requests.get(
         url=req_url,
         headers=HEADERS
