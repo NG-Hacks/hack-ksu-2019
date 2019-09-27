@@ -16,7 +16,7 @@ BASE_URL = Context.data()[const.BASE_URL]
 HEADERS = Context.data()[const.HEADERS]
 
 def update_account_balance(
-    account_id:str,
+    accountID:str,
     balance:int,
     base_url:str=BASE_URL, 
     headers:dict=HEADERS):
@@ -27,7 +27,7 @@ def update_account_balance(
         return None
 
     # build request url
-    req_url = base_url + f'/accounts/updateBalance/{account_id}'
+    req_url = base_url + f'/accounts/updateBalance/{accountID}'
 
     # load data
     data = {

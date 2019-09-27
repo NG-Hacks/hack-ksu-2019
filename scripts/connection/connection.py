@@ -1,6 +1,7 @@
 
 # standard
 import logging
+import time
 
 # packages
 
@@ -27,6 +28,10 @@ class Connection(Tablemap):
         self.get_owners()
         self.get_transactions()
 
+    def _update(self):
+        self._create()
+        self._initialize()
+
     def get_transactions(self):
         '''
             This function will get every transaction from 'list_transactions' 
@@ -36,7 +41,9 @@ class Connection(Tablemap):
             for account in self._tables[const.OWNERS][owner]:
                 self._tables[const.OWNERS][owner][account][const.TRANSACTIONS] = \
                         Endpoints.list_transactions(accountID=account)[const.DATA]
-
+        # stagger requests so they don't clog up database
+        time.sleep(0.2)
+        
     def get_owners(self):
         '''
             This function will find each unique owner in the database by using

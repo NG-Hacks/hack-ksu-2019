@@ -15,13 +15,13 @@ BASE_URL = Context.data()[const.BASE_URL]
 HEADERS = Context.data()[const.HEADERS]
 
 def delete_account(
-    account_id:str,
+    accountID:str,
     base_url:str=BASE_URL, 
     headers:dict=HEADERS):
     '''
     '''
     # build request url
-    req_url = base_url + f'/accounts/{account_id}'
+    req_url = base_url + f'/accounts/{accountID}'
 
     # make request
     delete_account_request = requests.delete(
