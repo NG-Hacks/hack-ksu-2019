@@ -11,6 +11,7 @@ Do not add apikey or other sensitive data to this repo.
 
 ## Set up the environment
 ```
+cd scripts
 python3.6 -m venv .env
 . .env/bin/activate
 pip install wheel

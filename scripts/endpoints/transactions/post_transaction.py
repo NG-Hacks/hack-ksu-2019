@@ -28,9 +28,16 @@ def post_transaction(
         This function interacts with the API Endpoint to create
         a transaction on the specified account.
     '''
+    if not isinstance(counterParty, str):
+        raise TypeError('counterParty not of type str')
+    if transactionType != 'debit' and transactionType != 'credit':
+        raise ValueError('transactionType not debit or credit')
 
+
+    # build request url
     req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
+    # load data
     data = {
         const.COUNTER_PARTY : counterParty,
         const.TYPE : transactionType,
@@ -41,17 +48,25 @@ def post_transaction(
     # if a date is not specified, the api will fill
     # in the date with the current time
     if date:
-        data[const.DATE] = date
+        params[const.DATE] = date
 
+    # make request
     resp = requests.post(
         url=req_url,
         headers=HEADERS,
         data=json.dumps(data)
     )
 
-    res = {
-        const.STATUS : resp.status_code,
-        const.TEXT : resp.text
-    }
+    try:
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : resp.json()
+        }
 
+    except: 
+        res = {
+            const.STATUS : resp.status_code,
+            const.DATA : None
+        }
+        
     return res
