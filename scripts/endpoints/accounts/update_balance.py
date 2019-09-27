@@ -13,6 +13,7 @@ def update_account_balance(base_url:str, headers:dict, account_id:str, balance:i
             const.DATA:update_account_balance_request.json()
         }
         return update_account_balance_response
+
     elif update_account_balance_request.status_code == 401:
         print("Access forbidden, invalid x-api-key")
         return None

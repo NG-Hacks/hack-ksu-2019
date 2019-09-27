@@ -1,17 +1,16 @@
 import requests
 import json
 from utility import const
-def accounts_by_owner(base_url:str, owner:str, headers:dict):
-    params = json.dumps({"onwer":owner})
+def get_accounts_by_owner(base_url:str, headers:dict, owner:str):
     accounts_by_owner_request = requests.get(
-        base_url+"accounts/owner/"+owner,
-        params=params
+        base_url+"accounts/owner/"+owner, headers=headers
     )
+    #print(accounts_by_owner_request)
     if accounts_by_owner_request.status_code == 200:
-        
         accounts_by_owner_response = {
             const.STATUS:accounts_by_owner_request.status_code,
             const.DATA:accounts_by_owner_request.json()
+            #const.TEXT:accounts_by_owner_request.text
         }
         return accounts_by_owner_response
     elif accounts_by_owner_request.status_code == 401:

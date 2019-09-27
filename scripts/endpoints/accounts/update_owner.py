@@ -1,7 +1,7 @@
 import requests
 import json
 from utility import const
-def update_account_owner(base_url:str, account_id:str, owner:str, headers:dict):
+def update_account_owner(base_url:str, headers:dict, account_id:str, owner:str):
     balance_data = json.dumps({"owner": owner})
     update_account_owner_request = requests.put(base_url+"/accounts/updateOwner/"+account_id, headers=headers, data=balance_data)
     
