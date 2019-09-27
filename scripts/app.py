@@ -6,7 +6,7 @@ import os
 import time
 
 # packages
-import numpy
+#import numpy
 
 # internal
 from utility import const, env
@@ -38,5 +38,8 @@ if __name__ == '__main__':
 
     BASE_URL = Context.data()[const.BASE_URL]
     HEADERS = Context.data()[const.HEADERS]
-    
+    from endpoints.accounts import create_account, accounts_by_owner,list_accounts,delete_account, inspect_account, update_balance, update_owner
+    res_by_owner = accounts_by_owner.get_accounts_by_owner(BASE_URL, HEADERS, "user1")
+    "Problem with by owner"
+    print(res_by_owner)
     
