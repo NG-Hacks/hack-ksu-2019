@@ -24,3 +24,14 @@ DESC = 'description'
 PAGE_SIZE = 'pageSize'
 PAGE_OFFSET = 'pageOffset'
 DATA = 'data'
+OWNER = 'owner'
+
+BALANCE = 'balance'
+ACCOUNTS = 'accounts'
+OWNERS = 'owners'
+TRANSACTIONS = 'transactions'
+NO_OWNER = 'no_owner'
+
+# table columns
+ID = 'id'
+NAME = 'name'
