@@ -5,6 +5,7 @@
 # python env
 .env
 __pycache__
+*.cpython-36.pyc
 *.pyc
 
 # config for our application
