@@ -76,5 +76,7 @@ if __name__ == '__main__':
     _LOGGER.info('initializing connection')
     from connection import conn
     conn._initialize()
-
+    #conn[const.OWNERS]['JaneDoe']
+    from plot_balance import plot_balance
+    plot_balance(conn[const.OWNERS]['JaneDoe'])
     print('done')
