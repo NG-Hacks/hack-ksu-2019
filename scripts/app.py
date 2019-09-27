@@ -48,9 +48,13 @@ if __name__ == '__main__':
     from endpoints import Endpoints
     Endpoints.initialize()
 
+    #Endpoints.create_account(owner='JohnDoe', balance=0)
+
     # init connection
     # this init references the conn object
     # because the object stores data in tables
     _LOGGER.info('initializing connection')
     from connection import conn
     conn._initialize()
+
+    print('done')

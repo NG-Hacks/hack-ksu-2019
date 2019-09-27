@@ -66,44 +66,29 @@ class Connection(Tablemap):
         }
 
         for account in self._tables[const.ACCOUNTS]:
+            # see if owner is already in tables
             try:
-                # attempt to append the account id and balance to the
-                # owners table by key of the owner name
-                self._tables[const.OWNERS] = {
-                    **self._tables[const.OWNERS],
-                    account[const.OWNER] : {
-                        **account[const.OWNER],
-                        account[const.ID] : {
-                            const.BALANCE : account[const.BALANCE]
-                        }
-                    }
-                }
-
-            except TypeError:
-                # if type error occurs in this step, it can't append
-                # because the dict doesn't exist yet.
-                self._tables[const.OWNERS] = {
-                    **self._tables[const.OWNERS],
-                    account[const.OWNER] : {
-                        account[const.ID] : {
-                            const.BALANCE : account[const.BALANCE]
-                        }
-                    }
-                }
-
+                test = self._tables[const.OWNERS][account[const.OWNER]]
+            # if key error, user was not there. Create it
             except KeyError:
-                # if key error occurs, it is because the account has no
-                # owner.
+                try:
+                    self._tables[const.OWNERS][account[const.OWNER]] = {}
 
-                # append the no owner key with the account
-                # balance and id
-                self._tables[const.OWNERS] = {
-                    **self._tables[const.OWNERS],
-                    const.NO_OWNER : {
+                # if key error happens here, there was no user associated
+                # with the account
+                except KeyError:
+                    self._tables[const.OWNERS][const.NO_OWNER] = {
                         **self._tables[const.OWNERS][const.NO_OWNER],
                         account[const.ID] : {
                             const.BALANCE : account[const.BALANCE]
                         }
                     }
-                }
-            
+
+                    continue
+
+            self._tables[const.OWNERS][account[const.OWNER]] = {
+                        **self._tables[const.OWNERS][account[const.OWNER]],
+                        account[const.ID] : {
+                            const.BALANCE : account[const.BALANCE]
+                        }
+                    }
