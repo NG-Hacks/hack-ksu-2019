@@ -1,24 +1,57 @@
-import requests
+
+# standard
 import json
+import logging
+
+# packages
+import requests
+
+# internal
+from context.context import Context
 from utility import const
-def get_accounts_by_owner(base_url:str, headers:dict, owner:str):
+
+_LOGGER = logging.getLogger(__name__)
+
+BASE_URL = Context.data()[const.BASE_URL]
+HEADERS = Context.data()[const.HEADERS]
+
+def accounts_by_owner(
+    owner:str,
+    base_url:str=BASE_URL, 
+    headers:dict=HEADERS):
+    '''
+    '''
+    # build request url
+    req_url = base_url + f'/accounts/owner/{owner}'
+
+    # load params for request
+    params = {
+        const.OWNER : owner
+    }
+
+    # make request
     accounts_by_owner_request = requests.get(
-        base_url+"accounts/owner/"+owner, headers=headers
-    )
-    #print(accounts_by_owner_request)
+        url=req_url,
+        params=json.dumps(params))
+
+    # if request was successful
     if accounts_by_owner_request.status_code == 200:
         accounts_by_owner_response = {
             const.STATUS:accounts_by_owner_request.status_code,
             const.DATA:accounts_by_owner_request.json()
             #const.TEXT:accounts_by_owner_request.text
         }
+
         return accounts_by_owner_response
+
     elif accounts_by_owner_request.status_code == 401:
-        print("Access forbidden, invalid x-api-key")
+        _LOGGER.error("Access forbidden, invalid x-api-key")
         return None
+        
     elif accounts_by_owner_request.status_code == 404:
-        print("Unable to find account")
+        _LOGGER.error("Unable to find account")
         return None
+
     else:
-        print("Unknow error")
+        _LOGGER.error("Unknown error")
         return None
