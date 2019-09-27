@@ -15,13 +15,13 @@ BASE_URL = Context.data()[const.BASE_URL]
 HEADERS = Context.data()[const.HEADERS]
 
 def inspect_account(
-    account_id:str,
+    accountID:str,
     base_url:str=BASE_URL,
     headers:dict=HEADERS):
     '''
     '''
     # build request url
-    req_url = base_url + f'/accounts/{account_id}'
+    req_url = base_url + f'/accounts/{accountID}'
 
     # make request
     inspect_account_request = requests.get(
@@ -31,8 +31,8 @@ def inspect_account(
     # if request was successful
     if inspect_account_request.status_code == 200:
         inspect_account_response = {
-            const.STATUS:inspect_account_response.status_code,
-            const.DATA:inspect_account_response.json()
+            const.STATUS:inspect_account_request.status_code,
+            const.DATA:inspect_account_request.json()
         }
 
         return inspect_account_response 

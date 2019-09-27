@@ -13,4 +13,4 @@ CONTENT_TYPE = ENV_BASE + 'CONTENT_TYPE'
 
 # change to true if you wish to log to file
 LOG_TO_FILE = False
-LOGGING_LEVEL = logging.INFO
+LOGGING_LEVEL = logging.DEBUG

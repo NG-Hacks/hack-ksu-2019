@@ -2,6 +2,7 @@
 # standard
 import logging
 from pathlib import Path
+from datetime import datetime
 
 # packages
 
@@ -47,12 +48,31 @@ if __name__ == '__main__':
     _LOGGER.info('initializing endpoints')
     from endpoints import Endpoints
     Endpoints.initialize()
+    
+    # Endpoints.post_transaction(
+    #     accountID='88efgiTlszS1z2TqSlPj',
+    #     counterParty='suntrust',
+    #     transactionType='debit',
+    #     description='ATM Withdrawal',
+    #     amount='20'
+    # )
 
-    #Endpoints.create_account(owner='JohnDoe', balance=0)
+    # Endpoints.post_transaction(
+    #     accountID='88efgiTlszS1z2TqSlPj',
+    #     counterParty='suntrust',
+    #     transactionType='credit',
+    #     description='ATM Deposit',
+    #     amount='100'
+    # )
+
+    res = Endpoints.inspect_account(
+        accountID='88efgiTlszS1z2TqSlPj'
+    )
 
     # init connection
     # this init references the conn object
     # because the object stores data in tables
+
     _LOGGER.info('initializing connection')
     from connection import conn
     conn._initialize()

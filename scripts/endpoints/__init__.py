@@ -24,4 +24,4 @@ class Endpoints:
         Endpoints.delete_transaction = delete_transaction
         Endpoints.inspect_transaction = inspect_transaction
         Endpoints.list_transactions = list_transactions
-        Endpoints.post_transactions = post_transaction
+        Endpoints.post_transaction = post_transaction
