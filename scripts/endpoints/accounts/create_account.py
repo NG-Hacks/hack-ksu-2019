@@ -8,8 +8,8 @@ import requests
 # internal
 from utility import const
 from context.context import Context
-from .update_balance import update_account_balance
-from .update_owner import update_account_owner
+from .update_account_balance import update_account_balance
+from .update_account_owner import update_account_owner
 
 _LOGGER = logging.getLogger(__name__)
 

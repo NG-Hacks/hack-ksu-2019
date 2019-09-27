@@ -15,7 +15,7 @@ _LOGGER = logging.getLogger(__name__)
 BASE_URL = Context.data()[const.BASE_URL]
 HEADERS = Context.data()[const.HEADERS]
 
-def update_balance(
+def update_account_balance(
     account_id:str,
     balance:int,
     base_url:str=BASE_URL, 
