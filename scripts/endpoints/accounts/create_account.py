@@ -23,27 +23,33 @@ def create_account(
     balance:int=None):
     '''
     '''
-    
+    # build request url
     req_url = base_url + '/accounts'
 
+    # make request
     create_account_request = requests.post(
         url=req_url,
         headers = headers)
 
+    # if request was successful
     if create_account_request.status_code == 200:
         _LOGGER.debug('Account created.')
 
         new_account = create_account_request.json()
         new_account_id = new_account["id"]
 
+        # if owner param was specified, associate the new
+        # account with the owner
         if owner:
             updated_owner = update_account_owner(new_account_id, owner)
             _LOGGER.debug("Updated owner:", updated_owner)
 
+        # if balance param was specified, initialize the account
+        # with the balance
         if balance:
             updated_balance = update_account_balance(new_account_id, balance)
             _LOGGER.debug("Updated balance: ", updated_balance)
-
+            
         create_response = {
             const.STATUS:create_account_request.status_code,
             const.DATA:create_account_request.json()

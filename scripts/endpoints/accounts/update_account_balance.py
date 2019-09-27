@@ -26,17 +26,21 @@ def update_account_balance(
         _LOGGER.error('Balance not of type integer')
         return None
 
+    # build request url
     req_url = base_url + f'/accounts/updateBalance/{account_id}'
 
+    # load data
     data = {
         const.BALANCE : balance
     }
 
+    # make request
     update_account_balance_request = requests.put(
         url=req_url, 
         headers=headers, 
         data=json.dumps(data))
 
+    # if request was successful
     if update_account_balance_request.status_code == 200:
         update_account_balance_response = {
             const.STATUS:update_account_balance_request.status_code,

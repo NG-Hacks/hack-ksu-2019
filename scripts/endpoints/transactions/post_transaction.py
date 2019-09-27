@@ -28,9 +28,10 @@ def post_transaction(
         This function interacts with the API Endpoint to create
         a transaction on the specified account.
     '''
-
+    # build request url
     req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
+    # load params
     params = {
         const.COUNTER_PARTY : counterParty,
         const.TYPE : transactionType,
@@ -43,6 +44,7 @@ def post_transaction(
     if date:
         params[const.DATE] = date
 
+    # make request
     resp = requests.post(
         url=req_url,
         headers=HEADERS,

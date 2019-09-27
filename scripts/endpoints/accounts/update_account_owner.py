@@ -22,18 +22,21 @@ def update_account_owner(
     headers:dict=HEADERS):
     '''
     '''
-
+    # build request url
     req_url = base_url + f'/accounts/updateOwner/{account_id}'
 
+    # load data
     data = {
         const.OWNER : owner
     }
 
+    # make request
     update_account_owner_request = requests.put(
         url=req_url, 
         headers=headers, 
         data=json.dumps(data))
     
+    # if request was successful
     if update_account_owner_request.status_code == 200:
         update_account_owner_response = {
             const.STATUS : update_account_owner_request.status_code,

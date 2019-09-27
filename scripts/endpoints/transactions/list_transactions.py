@@ -29,9 +29,10 @@ def list_transactions(
         This function interacts with the API Endpoint to create
         a transaction on the specified account.
     '''
-
+    # build request url
     req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
+    # load params
     params = {
         const.ID : accountID
     }
@@ -49,6 +50,7 @@ def list_transactions(
     if pageOffset:
         params[const.PAGE_OFFSET] = pageOffset
 
+    # make request
     resp = requests.get(
         url=req_url,
         headers=HEADERS,

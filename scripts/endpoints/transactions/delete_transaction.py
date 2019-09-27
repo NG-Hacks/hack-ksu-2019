@@ -27,9 +27,10 @@ def delete_transaction(
             accountID - Account identifier
             transactionID - Transaction identifier
     '''
-
+    # build request url
     req_url = BASE_URL + f'/accounts/{accountID}/transactions'
 
+    # make request
     resp = requests.delete(
         url=req_url,
         headers=HEADERS

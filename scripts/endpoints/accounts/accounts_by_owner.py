@@ -21,7 +21,7 @@ def accounts_by_owner(
     headers:dict=HEADERS):
     '''
     '''
-
+    # build request url
     req_url = base_url + f'/accounts/owner/{owner}'
 
     # load params for request

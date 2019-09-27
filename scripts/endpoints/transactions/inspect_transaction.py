@@ -27,9 +27,10 @@ def inspect_transaction(
             accountID - Account identifier
             transactionID - Transaction identifier
     '''
-
+    # build request url
     req_url = BASE_URL + f'accounts/{accountID}/transactions/{transactionID}'
 
+    # make request
     resp = requests.get(
         url=req_url,
         headers=HEADERS

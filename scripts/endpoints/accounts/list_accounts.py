@@ -19,13 +19,15 @@ def list_accounts(
     headers:dict=HEADERS):
     '''
     '''
-
+    # build request url
     req_url = base_url + '/accounts'
 
+    # make request
     accounts_list_request = requests.get(
         url=req_url, 
         headers=headers)
 
+    # if request was successful
     if accounts_list_request.status_code == 200:
         accounts_list_response = {
             const.STATUS:accounts_list_request.status_code,
