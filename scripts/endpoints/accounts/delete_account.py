@@ -20,13 +20,15 @@ def delete_account(
     headers:dict=HEADERS):
     '''
     '''
-
+    # build request url
     req_url = base_url + f'/accounts/{account_id}'
 
+    # make request
     delete_account_request = requests.delete(
         url=req_url, 
         headers=headers)
 
+    # if request was successful
     if delete_account_request.status_code == 200:
         delete_account_response = {
             const.STATUS:delete_account_response.status_code,
