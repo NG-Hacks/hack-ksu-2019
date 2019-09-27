@@ -7,9 +7,9 @@ def plot_balance(owner_info):
     for owner_account in owner_accounts:
         account_info = owner_info[owner_account]
         account_transactions = account_info[const.TRANSACTIONS]
-        most_recent_transaction = account_transactions[0]
         trans_info = get_transacions_date_amount(account_transactions)
         if trans_info != None:
+            most_recent_transaction = account_transactions[0]
             trans_amount = trans_info[0]
             trans_date = trans_info[1]
             make_plot(owner_account, trans_amount, trans_date)
