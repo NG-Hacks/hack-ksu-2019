@@ -76,7 +76,13 @@ if __name__ == '__main__':
     _LOGGER.info('initializing connection')
     from connection import conn
     conn._initialize()
+    from endpoints.accounts import list_accounts
+    res1 = list_accounts.list_accounts()[const.DATA]
     #conn[const.OWNERS]['JaneDoe']
-    from plot_balance import plot_balance
-    plot_balance(conn[const.OWNERS]['JaneDoe'])
+    #plot_balance(conn[const.OWNERS]['JaneDoe'])
+    from transaction_between_users import transaction_between_users
+    transaction_between_users("Noah", "user1", 0, 20)
+    
+    res2 = list_accounts.list_accounts()[const.DATA]
+    
     print('done')
