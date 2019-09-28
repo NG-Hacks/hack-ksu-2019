@@ -32,7 +32,8 @@ def accounts_by_owner(
     # make request
     accounts_by_owner_request = requests.get(
         url=req_url,
-        params=json.dumps(params))
+        params=json.dumps(params),
+        headers=headers)
 
     # if request was successful
     if accounts_by_owner_request.status_code == 200:

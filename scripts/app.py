@@ -65,16 +65,29 @@ if __name__ == '__main__':
     #     amount='100'
     # )
 
-    res = Endpoints.inspect_account(
-        accountID='88efgiTlszS1z2TqSlPj'
-    )
+    #res = Endpoints.create_account(owner='Anthony')
 
     # init connection
     # this init references the conn object
     # because the object stores data in tables
 
-    _LOGGER.info('initializing connection')
-    from connection import conn
-    conn._initialize()
+    # _LOGGER.info('initializing connection')
+    # from connection import conn
+    # conn._initialize()
 
+    def get_accounts_by_owner(owner:str):
+        accounts_list = Endpoints.list_accounts()[const.DATA][const.ACCOUNTS]
+        owner_account = []
+        for account in accounts_list:
+            if const.OWNER in account:
+                if account[const.OWNER] == owner:
+                    owner_account.append(account)
+        return owner_account
+    
+    #Endpoints.delete_account('mYXarTIsGL5hfbUeRGC6')
+    #res = Endpoints.accounts_by_owner(owner='Anthony')
+
+    res = Endpoints.list_accounts()
+
+    #res = Endpoints.accounts_by_owner(owner='Steve')
     print('done')
