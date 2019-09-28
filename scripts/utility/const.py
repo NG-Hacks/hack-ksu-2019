@@ -25,6 +25,8 @@ PAGE_SIZE = 'pageSize'
 PAGE_OFFSET = 'pageOffset'
 DATA = 'data'
 OWNER = 'owner'
+CREDIT = 'credit'
+DEBIT = 'debit'
 
 BALANCE = 'balance'
 ACCOUNTS = 'accounts'

@@ -48,7 +48,7 @@ def post_transaction(
     # if a date is not specified, the api will fill
     # in the date with the current time
     if date:
-        params[const.DATE] = date
+        data[const.DATE] = date
 
     # make request
     resp = requests.post(
