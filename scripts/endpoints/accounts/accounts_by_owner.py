@@ -40,6 +40,7 @@ def accounts_by_owner(
         accounts_by_owner_response = {
             const.STATUS:accounts_by_owner_request.status_code,
             const.DATA:accounts_by_owner_request.json()
+            #const.TEXT:accounts_by_owner_request.text
         }
 
         return accounts_by_owner_response
